@@ -3,6 +3,7 @@ import { Container, Grid, List } from "semantic-ui-react";
 import { Activity } from "../../../app/models/activity";
 import ActivityList from "./ActivityList";
 import ActivityDetails from "../details/ActivityDetails";
+import ActivityForm from "../form/ActivityForm";
 
 // ! Create Props to receive activities from App.tsx
 interface Props {
@@ -18,9 +19,11 @@ export default function ActivityDashboard({ activities }: Props) {
          <Grid.Column width="10">
             <ActivityList activities={activities} />
          </Grid.Column>
-         {/*  List Activity Details */}
          <Grid.Column width="6">
+            {/*  List Activity Details */}
             {activities[0] && <ActivityDetails activity={activities[0]} />}
+            {/*  List Form */}
+            <ActivityForm />
          </Grid.Column>
       </Grid>
    );
