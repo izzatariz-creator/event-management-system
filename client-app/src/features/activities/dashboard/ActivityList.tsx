@@ -2,10 +2,12 @@ import * as React from "react";
 import { Activity } from "../../../app/models/activity";
 import { Button, Item, Label, Segment } from "semantic-ui-react";
 
+// * Interface for props
 interface Props {
    activities: Activity[];
 }
 
+// * Function
 export default function ActivityList({ activities }: Props) {
    return (
       <Segment>
