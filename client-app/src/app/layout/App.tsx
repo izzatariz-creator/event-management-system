@@ -3,6 +3,7 @@ import axios from "axios";
 import { Container, Header, List } from "semantic-ui-react";
 import { Activity } from "../models/activity";
 import NavBar from "./NavBar";
+import ActivityDashboard from "../../features/activities/dashboard/ActivityDashboard";
 
 function App() {
    //  variable
@@ -22,13 +23,9 @@ function App() {
       <>
          <NavBar />
 
-         {/*  List Activities */}
          <Container style={{ marginTop: "7em" }}>
-            <List>
-               {activities.map((activity) => (
-                  <li key={activity.id}>{activity.title}</li>
-               ))}
-            </List>
+            {/* pass activities to dashboard */}
+            <ActivityDashboard activities={activities} />
          </Container>
       </>
    );

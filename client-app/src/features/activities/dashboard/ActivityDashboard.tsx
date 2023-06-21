@@ -1,32 +1,22 @@
-import * as React from 'react';
-import { Grid, List } from 'semantic-ui-react';
-import { Activity } from '../../../app/models/activity';
-import ActivityList from './ActivityList';
-import ActivityDetails from '../details/ActivityDetails';
-import ActivityForm from '../form/ActivityForm';
+import * as React from "react";
+import { Container, Grid, List } from "semantic-ui-react";
+import { Activity } from "../../../app/models/activity";
+import ActivityList from "./ActivityList";
 
+// ! Create Props to receive activities from App.tsx
 interface Props {
-    activities: Activity[];
-    selectedActivity: Activity | undefined;
-    selectActivity: (id: string) => void;
-    cancelSelectActivity: () => void;
+   activities: Activity[]; //
 }
 
-export default function ActivityDashboard({ activities, selectedActivity, 
-    selectActivity, cancelSelectActivity }: Props) {
-
-    return (
-        <Grid>
-            {/* show list of activities */}
-            <Grid.Column width='10'>
-                <ActivityList activities={activities} selectActivity={selectActivity} />
-            </Grid.Column>
-            {/* show details of an activity */}
-            <Grid.Column width='6'>
-                {selectedActivity &&
-                <ActivityDetails activity={selectedActivity} cancelSelectActivity={cancelSelectActivity} />}
-                <ActivityForm />
-            </Grid.Column>
-        </Grid>
-    )
+// Destructure Props - props is a type of Props
+// ! Destructure activities passed from App.tsx
+export default function ActivityDashboard({ activities }: Props) {
+   return (
+      <Grid>
+         <Grid.Column width="10">
+            {/*  List Activities */}
+            <ActivityList activities={activities} />
+         </Grid.Column>
+      </Grid>
+   );
 }
