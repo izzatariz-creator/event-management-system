@@ -8,12 +8,14 @@ interface Props {
    closeForm: () => void;
    activity: Activity | undefined;
    createOrEdit: (activity: Activity) => void;
+   submitting: boolean;
 }
 
 export default function ActivityForm({
    closeForm,
    activity: selectedActivity,
    createOrEdit,
+   submitting,
 }: Props) {
    // state
    // ! if activity is null then {}
@@ -86,7 +88,13 @@ export default function ActivityForm({
                name="venue"
                onChange={handleInputChange}
             />
-            <Button floated="right" positive type="submit" content="Submit" />
+            <Button
+               floated="right"
+               positive
+               type="submit"
+               content="Submit"
+               loading={submitting}
+            />
             <Button
                onClick={closeForm}
                floated="right"
