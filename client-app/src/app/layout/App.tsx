@@ -5,6 +5,7 @@ import { Activity } from "../models/activity";
 import NavBar from "./NavBar";
 import ActivityDashboard from "../../features/activities/dashboard/ActivityDashboard";
 import { v4 as uuid } from "uuid";
+import agent from "../api/agent";
 
 function App() {
    //  ! Variable/State
@@ -18,12 +19,10 @@ function App() {
 
    // * will execute once program run
    useEffect(() => {
-      axios
-         .get<Activity[]>("http://localhost:5000/api/activities")
-         .then((response) => {
-            // console.log(response);
-            setActivities(response.data);
-         });
+      agent.Activities.list().then((response) => {
+         // console.log(response);
+         setActivities(response);
+      });
    }, []);
 
    // * Receive id when button is clicked, Set selectedActivity to id when view button is clicked
