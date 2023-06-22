@@ -7,10 +7,11 @@ interface Props {
    activity: Activity;
    // * Function -> cancelSelectActivity returns void
    cancelSelectActivity: () => void;
+   openForm: (id: string) => void;
 }
 
 // * Function
-export default function ({ activity, cancelSelectActivity }: Props) {
+export default function ({ activity, cancelSelectActivity, openForm }: Props) {
    return (
       <Card fluid>
          {/* 'backtick' allows us to add JS property inside string  */}
@@ -24,7 +25,12 @@ export default function ({ activity, cancelSelectActivity }: Props) {
          </Card.Content>
          <Card.Content extra>
             <Button.Group widths="2">
-               <Button basic color="blue" content="Edit" />
+               <Button
+                  onClick={() => openForm(activity.id)}
+                  basic
+                  color="blue"
+                  content="Edit"
+               />
                <Button
                   onClick={cancelSelectActivity}
                   basic

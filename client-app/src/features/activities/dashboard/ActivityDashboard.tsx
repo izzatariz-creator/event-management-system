@@ -13,6 +13,9 @@ interface Props {
    selectActivity: (id: string) => void;
    // * Function -> cancelSelectActivity returns void
    cancelSelectActivity: () => void;
+   editMode: boolean;
+   openForm: (id: string) => void;
+   closeForm: () => void;
 }
 
 // Destructure Props - props is a type of Props
@@ -22,6 +25,9 @@ export default function ActivityDashboard({
    selectedActivity,
    selectActivity,
    cancelSelectActivity,
+   editMode,
+   openForm,
+   closeForm,
 }: Props) {
    return (
       <Grid>
@@ -34,14 +40,20 @@ export default function ActivityDashboard({
          </Grid.Column>
          <Grid.Column width="6">
             {/*  List Activity Details */}
-            {selectedActivity && (
+            {selectedActivity && !editMode && (
                <ActivityDetails
                   activity={selectedActivity}
                   cancelSelectActivity={cancelSelectActivity}
+                  openForm={openForm}
                />
             )}
-            {/*  List Form */}
-            <ActivityForm />
+            {/*  List Form if in edit mode*/}
+            {editMode && (
+               <ActivityForm
+                  closeForm={closeForm}
+                  activity={selectedActivity}
+               />
+            )}
          </Grid.Column>
       </Grid>
    );
