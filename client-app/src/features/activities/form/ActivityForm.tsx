@@ -7,11 +7,13 @@ import { ChangeEvent, useState } from "react";
 interface Props {
    closeForm: () => void;
    activity: Activity | undefined;
+   createOrEdit: (activity: Activity) => void;
 }
 
 export default function ActivityForm({
    closeForm,
    activity: selectedActivity,
+   createOrEdit,
 }: Props) {
    // state
    // ! if activity is null then {}
@@ -29,7 +31,8 @@ export default function ActivityForm({
 
    // * Function to handle form submission
    function handleSubmit() {
-      console.log(activity);
+      // console.log(activity);
+      createOrEdit(activity);
    }
 
    // * Function to handle input change

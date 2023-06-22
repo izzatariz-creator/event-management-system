@@ -16,6 +16,7 @@ interface Props {
    editMode: boolean;
    openForm: (id: string) => void;
    closeForm: () => void;
+   createOrEdit: (activity: Activity) => void;
 }
 
 // Destructure Props - props is a type of Props
@@ -28,6 +29,7 @@ export default function ActivityDashboard({
    editMode,
    openForm,
    closeForm,
+   createOrEdit,
 }: Props) {
    return (
       <Grid>
@@ -52,6 +54,7 @@ export default function ActivityDashboard({
                <ActivityForm
                   closeForm={closeForm}
                   activity={selectedActivity}
+                  createOrEdit={createOrEdit}
                />
             )}
          </Grid.Column>
