@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { Container, Header, List } from "semantic-ui-react";
+import { Container } from "semantic-ui-react";
 import { Activity } from "../models/activity";
 import NavBar from "./NavBar";
 import ActivityDashboard from "../../features/activities/dashboard/ActivityDashboard";
+import { v4 as uuid } from "uuid";
 
 function App() {
    //  ! Variable/State
@@ -54,7 +55,7 @@ function App() {
               ...activities.filter((x) => x.id !== activity.id),
               activity,
            ]) // * Edit
-         : setActivities([...activities, activity]); // * Create
+         : setActivities([...activities, { ...activity, id: uuid() }]); // * Create id during activity creation
 
       setEditMode(false);
       setSelectedActivity(activity);
