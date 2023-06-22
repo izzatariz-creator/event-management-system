@@ -6,8 +6,12 @@ import NavBar from "./NavBar";
 import ActivityDashboard from "../../features/activities/dashboard/ActivityDashboard";
 
 function App() {
-   //  variable
+   //  ! Variable/State
    const [activities, setActivities] = useState<Activity[]>([]);
+   // * State can be activity or undefined with default undefined
+   const [selectedActivity, setSelectedActivity] = useState<
+      Activity | undefined
+   >(undefined);
 
    // will execute once program run
    useEffect(() => {
@@ -19,13 +23,28 @@ function App() {
          });
    }, []);
 
+   // * Receive id
+   function handleSelectActivity(id: string) {
+      // ! Activity id matches with received id
+      setSelectedActivity(activities.find((x) => x.id === id));
+   }
+
+   function handleCancelSelectActivity() {
+      setSelectedActivity(undefined);
+   }
+
    return (
       <>
          <NavBar />
 
          <Container style={{ marginTop: "7em" }}>
             {/* pass activities to dashboard */}
-            <ActivityDashboard activities={activities} />
+            <ActivityDashboard
+               activities={activities}
+               selectedActivity={selectedActivity}
+               selectActivity={handleSelectActivity}
+               cancelSelectActivity={handleCancelSelectActivity}
+            />
          </Container>
       </>
    );

@@ -5,10 +5,12 @@ import { Activity } from "../../../app/models/activity";
 // * Interface
 interface Props {
    activity: Activity;
+   // * Function -> cancelSelectActivity returns void
+   cancelSelectActivity: () => void;
 }
 
 // * Function
-export default function ({ activity }: Props) {
+export default function ({ activity, cancelSelectActivity }: Props) {
    return (
       <Card fluid>
          {/* 'backtick' allows us to add JS property inside string  */}
@@ -24,7 +26,7 @@ export default function ({ activity }: Props) {
             <Button.Group widths="2">
                <Button basic color="blue" content="Edit" />
                <Button
-                  //   onClick={cancelSelectActivity}
+                  onClick={cancelSelectActivity}
                   basic
                   color="grey"
                   content="Cancel"

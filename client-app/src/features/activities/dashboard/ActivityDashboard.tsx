@@ -7,21 +7,39 @@ import ActivityForm from "../form/ActivityForm";
 
 // ! Create Props to receive activities from App.tsx
 interface Props {
-   activities: Activity[]; //
+   activities: Activity[];
+   selectedActivity: Activity | undefined;
+   // * Function -> selectActivity returns void
+   selectActivity: (id: string) => void;
+   // * Function -> cancelSelectActivity returns void
+   cancelSelectActivity: () => void;
 }
 
 // Destructure Props - props is a type of Props
-// ! Destructure activities passed from App.tsx
-export default function ActivityDashboard({ activities }: Props) {
+// ! Destructure activities/Props passed from App.tsx
+export default function ActivityDashboard({
+   activities,
+   selectedActivity,
+   selectActivity,
+   cancelSelectActivity,
+}: Props) {
    return (
       <Grid>
          {/*  List Activities */}
          <Grid.Column width="10">
-            <ActivityList activities={activities} />
+            <ActivityList
+               activities={activities}
+               selectActivity={selectActivity}
+            />
          </Grid.Column>
          <Grid.Column width="6">
             {/*  List Activity Details */}
-            {activities[0] && <ActivityDetails activity={activities[0]} />}
+            {selectedActivity && (
+               <ActivityDetails
+                  activity={selectedActivity}
+                  cancelSelectActivity={cancelSelectActivity}
+               />
+            )}
             {/*  List Form */}
             <ActivityForm />
          </Grid.Column>
