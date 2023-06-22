@@ -21,6 +21,12 @@ function App() {
    useEffect(() => {
       agent.Activities.list().then((response) => {
          // console.log(response);
+         let activities: Activity[] = [];
+         // ? display date inside edit form
+         response.forEach((activity) => {
+            activity.date = activity.date.split("T")[0];
+            activities.push(activity);
+         });
          setActivities(response);
       });
    }, []);
